@@ -1,4 +1,5 @@
 # finalix python challenge - test data generator part 1
+# Marco Zietzling, 2020
 
 import xlsxwriter
 import datetime
@@ -28,8 +29,8 @@ def read_test_data():
                     first_name,
                     last_name,
                     region,
-                    generate_birthdate(),
-                    generate_phonenumber()
+                    generate_random_birthdate(),
+                    generate_random_phonenumber()
                 ]
 
                 id += 1
@@ -38,13 +39,13 @@ def read_test_data():
     return result
 
 
-def generate_birthdate():
+def generate_random_birthdate():
     start_date = datetime.date(day=1, month=1, year=1920)
     end_date = datetime.date(day=31, month=12, year=2000)
     return (start_date + random.random() * (end_date - start_date)).strftime("%d.%m.%Y")
 
 
-def generate_phonenumber():
+def generate_random_phonenumber():
     i = random.randint(10000000000, 99999999999)
 
     while i in phone_numbers:

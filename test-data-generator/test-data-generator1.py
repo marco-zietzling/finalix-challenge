@@ -1,6 +1,10 @@
 # finalix python challenge - test data generator part 1
 
 import xlsxwriter
+import datetime
+import random
+
+phone_numbers = set()
 
 
 def read_test_data():
@@ -19,14 +23,14 @@ def read_test_data():
     for first_name in first_names:
         for last_name in last_names:
             for region in regions:
-                data_item = {
-                    "id": id,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "region": region,
-                    "birthdate": generate_birthdate(),
-                    "phone": generate_phone()
-                }
+                data_item = [
+                    id,
+                    first_name,
+                    last_name,
+                    region,
+                    generate_birthdate(),
+                    generate_phonenumber()
+                ]
 
                 id += 1
                 result.append(data_item)
@@ -35,19 +39,50 @@ def read_test_data():
 
 
 def generate_birthdate():
-    return ""
+    start_date = datetime.date(day=1, month=1, year=1920)
+    end_date = datetime.date(day=31, month=12, year=2000)
+    return (start_date + random.random() * (end_date - start_date)).strftime("%d.%m.%Y")
 
 
-def generate_phone():
-    return ""
+def generate_phonenumber():
+    i = random.randint(10000000000, 99999999999)
+
+    while i in phone_numbers:
+        print("duplicate phone number hit, generating next one")
+        i = random.randint(10000000000, 99999999999)
+
+    phone_numbers.add(i)
+
+    # print(f"{str(i)} -> {str(i)[0:2]}.{str(i)[2:4]}.{str(i)[4:7]}.{str(i)[7:11]}")
+    return f"{str(i)[0:2]}.{str(i)[2:4]}.{str(i)[4:7]}.{str(i)[7:11]}"
 
 
 def write_test_data(data: list):
     workbook = xlsxwriter.Workbook("test_data1.xlsx")
     worksheet = workbook.add_worksheet()
 
-    for i in data:
-        worksheet.write_row(i)
+    # add a bold format to use to highlight cells.
+    bold = workbook.add_format({'bold': True})
+
+    # write the header
+    worksheet.write(0, 0, "ID", bold)
+    worksheet.write(0, 1, "First name", bold)
+    worksheet.write(0, 2, "Last name", bold)
+    worksheet.write(0, 3, "Region", bold)
+    worksheet.write(0, 4, "Birthdate", bold)
+    worksheet.write(0, 5, "Phone", bold)
+
+    # write data
+    row = 1
+    for [id, first_name, last_name, region, birthdate, phone] in data:
+        worksheet.write(row, 0, id)
+        worksheet.write(row, 1, first_name)
+        worksheet.write(row, 2, last_name)
+        worksheet.write(row, 3, region)
+        worksheet.write(row, 4, birthdate)
+        worksheet.write(row, 5, phone)
+
+        row += 1
 
     workbook.close()
 

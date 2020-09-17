@@ -7,14 +7,14 @@ def get_roman_numeral(int_input: int):
     if not 1 <= int_input < 4000:
         raise ValueError("Invalid input provided, only numbers between 1 and 3999 are expected.")
 
-    ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
-    nums = ("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+    integers = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+    numerals = ("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
     result = []
 
-    for i in range(len(ints)):
-        count = int(int_input / ints[i])
-        result.append(nums[i] * count)
-        int_input -= ints[i] * count
+    for i in range(len(integers)):
+        count = int(int_input / integers[i])
+        result.append(numerals[i] * count)
+        int_input -= integers[i] * count
     return "".join(result)
 
 

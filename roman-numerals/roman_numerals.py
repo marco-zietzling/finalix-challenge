@@ -23,6 +23,7 @@ worksheet = workbook.add_worksheet()
 
 for i in range(1, 4000):
     numeral = get_roman_numeral(i)
-    worksheet.write("A" + str(i), numeral)
+    worksheet.write("A" + str(i), i)
+    worksheet.write("B" + str(i), numeral)
 
 workbook.close()

@@ -8,13 +8,13 @@ phone_numbers = set()
 
 
 def read_test_data():
-    with open("vornamen.txt", "r") as file:
+    with open("vornamen.txt", "r", encoding='utf8') as file:
         first_names = [i.strip() for i in file.readlines()]
 
-    with open("nachnamen.txt", "r") as file:
+    with open("nachnamen.txt", "r", encoding='utf8') as file:
         last_names = [i.strip() for i in file.readlines()]
 
-    with open("kantone.txt", "r") as file:
+    with open("kantone.txt", "r", encoding='utf8') as file:
         regions = [i.strip() for i in file.readlines()]
 
     id = 11001

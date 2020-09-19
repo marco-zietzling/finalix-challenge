@@ -39,12 +39,12 @@ def manipulate_regions(data: DataFrame):
     data.loc[data["Region"] == "Zug", "Region"] = "ZG"
     data.loc[data["Region"] == "Freiburg", "Region"] = "FR"
     data.loc[data["Region"] == "Solothurn", "Region"] = "SO"
-    data.loc[data["Region"] == "Basel - Stadt", "Region"] = "BS"
-    data.loc[data["Region"] == "Basel - Landschaft", "Region"] = "BL"
+    data.loc[data["Region"] == "Basel-Stadt", "Region"] = "BS"
+    data.loc[data["Region"] == "Basel-Landschaft", "Region"] = "BL"
     data.loc[data["Region"] == "Schaffhausen", "Region"] = "SH"
     data.loc[data["Region"] == "Appenzell Ausserrhoden", "Region"] = "AR"
     data.loc[data["Region"] == "Appenzell Innerrhoden", "Region"] = "AI"
-    data.loc[data["Region"] == "St.Gallen", "Region"] = "SG"
+    data.loc[data["Region"] == "St. Gallen", "Region"] = "SG"
     data.loc[data["Region"] == "Graubünden", "Region"] = "GR"
     data.loc[data["Region"] == "Aargau", "Region"] = "AG"
     data.loc[data["Region"] == "Thurgau", "Region"] = "TG"
@@ -57,6 +57,10 @@ def manipulate_regions(data: DataFrame):
 
 
 def generate_email_address(data: DataFrame):
+    return ""
+
+
+def manipulate_phonenumbers(data: DataFrame):
     return ""
 
 
@@ -77,6 +81,7 @@ manipulate_lastnames(test_data)
 manipulate_firstnames(test_data)
 manipulate_birthdates(test_data)
 manipulate_regions(test_data)
+manipulate_phonenumbers(test_data)
 generate_email_address(test_data)
 
 print(test_data.head())
